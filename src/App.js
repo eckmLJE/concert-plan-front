@@ -4,10 +4,11 @@ import "./App.css";
 import { Route } from "react-router-dom";
 
 import Header from "./components/Header";
+import Login from "./views/Login"
 import Home from "./views/Home";
 import Concerts from "./views/Concerts";
 import Plans from "./views/Plans";
-import Account from "./views/Account";
+import User from "./views/User";
 import BottomBar from "./components/BottomBar";
 
 class App extends Component {
@@ -18,7 +19,8 @@ class App extends Component {
         <Route exact path="/" component={Home} />
         <Route path="/concerts" component={Concerts} />
         <Route path="/plans" component={Plans} />
-        <Route path="/account" component={Account} />
+        <Route path="/user" component={User} />
+        <Route path="/login" component={Login} />
         <BottomBar />
       </div>
     );
