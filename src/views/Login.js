@@ -1,27 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { authenticateUser } from "../actions/users"
+import { authenticateUser } from "../actions/users";
 
 class Login extends Component {
   state = { email: "", password: "" };
 
   login = e => {
     e.preventDefault();
-    let params = {
+    let userData = {
       auth: {
         email: this.state.email,
         password: this.state.password
       }
     };
-    let url = "http://localhost:3000/api/v1/user_token";
-    fetch(url, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(params)
-    })
-      .then(res => res.json())
-      .then(console.log);
+    this.props.authenticateUser(userData);
   };
 
   render() {
@@ -45,6 +38,10 @@ class Login extends Component {
   }
 }
 
+// const mapStateToProps = state => ({
+//   // errors: state.errors.login
+// });
+
 const mapDispatchToProps = dispatch => {
   return {
     authenticateUser: userData => dispatch(authenticateUser(userData))
@@ -53,13 +50,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const mapStateToProps = state => {
-  return {
-    errors: state.errors.login
-  };
-};
-
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Login);

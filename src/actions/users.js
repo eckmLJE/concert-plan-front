@@ -8,9 +8,7 @@ const postUserAuthentication = userData => {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(userData)
-  })
-    .then(res => res.json())
-    .then(console.log);
+  });
 };
 
 const postUser = userData => {
@@ -40,7 +38,7 @@ const loadUser = () => dispatch => {
       if (resp.status === 200) {
         resp.json().then(user => {
           dispatch({ type: "FETCHED_USER", user });
-          dispatch(push("/new-location"));
+          dispatch(push("/home"));
         });
       } else {
         dispatch({ type: "USER_LOGIN_FAILED" });
@@ -74,9 +72,9 @@ export const saveUser = userData => dispatch => {
     } else {
       res.json().then(response => {
         console.log(response);
-        let errors = response.errors.join(" ");
-        console.log(errors);
-        dispatch({ type: "USER_POST_FAILED", errors });
+        // let errors = response.errors.join(" ");
+        // console.log(errors);
+        // dispatch({ type: "USER_POST_FAILED", errors });
       });
     }
   });
