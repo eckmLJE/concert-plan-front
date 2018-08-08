@@ -15,6 +15,7 @@ class Login extends Component {
       }
     };
     this.props.authenticateUser(userData);
+    this.setState({ email: "", password: "" });
   };
 
   render() {

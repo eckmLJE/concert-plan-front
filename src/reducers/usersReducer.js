@@ -29,17 +29,21 @@ const usersReducer = (
     case "FETCHED_USER":
       return {
         ...state,
-        currentUser: action.user,
+        currentUser: {
+          id: action.user.data.id,
+          username: action.user.data.attributes.username,
+          email: action.user.data.attributes.email
+        },
+        userLoadingStatus: false,
+        userAuthStatus: "authenticated"
+      };
+    case "USER_LOGIN_FAILED":
+      return {
+        ...state,
+        currentUser: null,
+        userAuthStatus: "failed",
         userLoadingStatus: false
       };
-      case "USER_LOGIN_FAILED":
-      return {
-          ...state,
-          currentUser: null,
-          userAuthStatus: "failed",
-          userLoadingStatus: false
-
-      }
     default:
       return state;
   }

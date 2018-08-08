@@ -31,7 +31,9 @@ const getUser = () => {
   });
 };
 
-const loadUser = () => dispatch => {
+// actions
+
+export const loadUser = () => dispatch => {
   if (token()) {
     dispatch({ type: "FETCHING_USER" });
     getUser().then(resp => {
@@ -46,8 +48,6 @@ const loadUser = () => dispatch => {
     });
   }
 };
-
-// actions
 
 export const authenticateUser = userData => dispatch => {
   dispatch({ type: "AUTHENTICATING_USER" });
