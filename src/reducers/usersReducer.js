@@ -44,6 +44,13 @@ const usersReducer = (
         userAuthStatus: "failed",
         userLoadingStatus: false
       };
+    case "LOG_OUT_USER":
+      return {
+        ...state,
+        currentUser: null,
+        userAuthStatus: "no user",
+        userLoadingStatus: false
+      };
     default:
       return state;
   }

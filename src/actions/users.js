@@ -33,6 +33,12 @@ const getUser = () => {
 
 // actions
 
+export const logOutUser = () => dispatch => {
+  localStorage.removeItem("token");
+  dispatch({ type: "LOG_OUT_USER" });
+  dispatch(push("/home"));
+};
+
 export const loadUser = () => dispatch => {
   if (token()) {
     dispatch({ type: "FETCHING_USER" });
