@@ -19,3 +19,8 @@ export const setCurrentVenue = venueId => {
       });
   };
 };
+
+export const setCurrentConcert = concert => ({
+  type: "SET_CONCERT",
+  concert
+});

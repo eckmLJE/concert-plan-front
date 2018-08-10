@@ -2,6 +2,7 @@ const concertsReducer = (
   state = {
     currentVenue: null,
     currentConcerts: [],
+    currentConcert: {},
     concertLoadingStatus: false
   },
   action
@@ -19,6 +20,11 @@ const concertsReducer = (
         ...state,
         currentConcerts: action.concerts,
         concertLoadingStatus: false
+      };
+    case "SET_CONCERT":
+      return {
+        ...state,
+        currentConcert: action.concert
       };
     default:
       return state;

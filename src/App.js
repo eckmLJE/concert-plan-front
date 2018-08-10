@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Home from "./views/Home";
+import Login from "./views/Login"
 import Concerts from "./views/Concerts";
 import Plans from "./views/Plans";
 import User from "./views/User";
@@ -16,13 +17,14 @@ class App extends Component {
       <div className="App">
         <Header />
         <Route exact path="/" component={Home} />
-        <Route path="/concerts" component={Concerts} />
-        <Route path="/plans" component={Plans} />
-        <Route path="/user" component={User} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/concerts" component={Concerts} />
+        <Route exact path="/plans" component={Plans} />
+        <Route exact path="/user" component={User} />
         <BottomBar />
       </div>
     );
   }
 }
 
-export default App;
+export default App

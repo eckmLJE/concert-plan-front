@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { loadUser } from "../actions/users";
-import { logOutUser } from "../actions/users";
+import { Segment, Button, Dropdown } from "semantic-ui-react";
 
-import Login from "./Login";
+import { logOutUser } from "../actions/users";
+import { loadUser } from "../actions/users";
+import { navToHome } from "../actions/navs";
+import { navToLogin } from "../actions/navs";
+import { navToConcerts } from "../actions/navs";
 
 class Header extends Component {
   componentDidMount = () => {
@@ -13,17 +16,39 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
+      <Segment clearing>
+        <Dropdown icon="bars">
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={this.props.navToHome}>Home</Dropdown.Item>
+            <Dropdown.Item onClick={this.props.navToConcerts}>
+              Concerts
+            </Dropdown.Item>
+            <Dropdown.Item>Plans</Dropdown.Item>
+            <Dropdown.Item>Test3</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         {this.props.userAuthStatus === "authenticated" ? (
-          <div>
-            {"User Authenticated"}{" "}
-            <button onClick={this.props.logOutUser}>Log Out</button>
-          </div>
+          <Button
+            size="tiny"
+            basic
+            secondary
+            floated="right"
+            onClick={this.props.logOutUser}
+          >
+            Log Out
+          </Button>
         ) : (
-          "Please Login"
+          <Button
+            size="tiny"
+            basic
+            primary
+            floated="right"
+            onClick={this.props.navToLogin}
+          >
+            Log In
+          </Button>
         )}
-        {this.props.userAuthStatus !== "authenticated" ? <Login /> : null}
-      </div>
+      </Segment>
     );
   }
 }
@@ -32,12 +57,13 @@ const mapStateToProps = state => ({
   userAuthStatus: state.users.userAuthStatus
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadUser: () => dispatch(loadUser()),
-    logOutUser: () => dispatch(logOutUser())
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  logOutUser: () => dispatch(logOutUser()),
+  loadUser: () => dispatch(loadUser()),
+  navToHome: () => dispatch(navToHome()),
+  navToLogin: () => dispatch(navToLogin()),
+  navToConcerts: () => dispatch(navToConcerts())
+});
 
 export default connect(
   mapStateToProps,
