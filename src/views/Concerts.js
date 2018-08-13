@@ -7,7 +7,7 @@ import { Container } from "semantic-ui-react";
 
 import VenueList from "../containers/VenueList";
 import ConcertList from "../containers/ConcertList";
-import ConcertDetail from "../containers/ConcertDetail";
+import ConcertDetail from "../components/ConcertDetail";
 
 class Concerts extends Component {
   state = { viewToggle: "venue" };

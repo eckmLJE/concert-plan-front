@@ -8,6 +8,7 @@ import { loadUser } from "../actions/users";
 import { navToHome } from "../actions/navs";
 import { navToLogin } from "../actions/navs";
 import { navToConcerts } from "../actions/navs";
+import { navToPlans } from "../actions/navs"
 
 class Header extends Component {
   componentDidMount = () => {
@@ -23,13 +24,13 @@ class Header extends Component {
             <Dropdown.Item onClick={this.props.navToConcerts}>
               Concerts
             </Dropdown.Item>
-            <Dropdown.Item>Plans</Dropdown.Item>
+            <Dropdown.Item onClick={this.props.navToPlans}>Plans</Dropdown.Item>
             <Dropdown.Item>Test3</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         {this.props.userAuthStatus === "authenticated" ? (
           <Button
-            size="tiny"
+            size="mini"
             basic
             secondary
             floated="right"
@@ -39,7 +40,7 @@ class Header extends Component {
           </Button>
         ) : (
           <Button
-            size="tiny"
+            size="mini"
             basic
             primary
             floated="right"
@@ -62,7 +63,8 @@ const mapDispatchToProps = dispatch => ({
   loadUser: () => dispatch(loadUser()),
   navToHome: () => dispatch(navToHome()),
   navToLogin: () => dispatch(navToLogin()),
-  navToConcerts: () => dispatch(navToConcerts())
+  navToConcerts: () => dispatch(navToConcerts()),
+  navToPlans: () => dispatch(navToPlans())
 });
 
 export default connect(
